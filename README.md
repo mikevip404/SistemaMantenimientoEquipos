@@ -14,7 +14,6 @@ Incluye un dashboard visual con estadísticas dinámicas y diseño moderno tipo 
 - **SQL Server (SmarterASP.NET)**
 - **Identity Framework (Autenticación y Roles)**
 - **Bootstrap 5 & Bootstrap Icons**
-- **Chart.js**
 - **C#**
 - **HTML, CSS, Razor**
 
