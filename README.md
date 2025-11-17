@@ -62,9 +62,7 @@ Permisos:
 ✔ Crear reportes  
 ✔ Ver sus propios reportes  
 ✔ Ver listado de equipos  
-❌ No puede eliminar  
 ❌ No puede editar equipos  
-❌ No puede ver Dashboard administrativo  
 ❌ No puede asignar roles  
 
 ---
