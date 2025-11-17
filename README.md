@@ -53,7 +53,6 @@ Crear una plataforma para la gestión de mantenimiento de equipos, permitiendo:
 ✔ CRUD Equipos  
 ✔ CRUD Reportes  
 ✔ Ver Dashboard  
-✔ Ver Usuarios (pero NO cambiar roles)  
 
 ---
 
