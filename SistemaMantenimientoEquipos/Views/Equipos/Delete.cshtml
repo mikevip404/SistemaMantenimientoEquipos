@@ -1,0 +1,78 @@
+﻿@model SistemaMantenimientoEquipos.Models.Equipo
+
+@{
+    ViewData["Title"] = "Eliminar Equipo";
+
+    string GetStatusBadgeClass(string estado)
+    {
+        return estado switch
+        {
+            "Activo" => "bg-success",
+            "En Reparación" => "bg-warning",
+            "Fuera de Servicio" => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0"><i class="fas fa-trash-alt"></i> Eliminar Equipo</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i> ¿Está seguro de que desea eliminar este equipo? Esta acción no se puede deshacer.
+                    </div>
+                    <dl class="row">
+                        <dt class="col-sm-4 fw-bold">
+                            <i class="fas fa-tag"></i> @Html.DisplayNameFor(model => model.Nombre)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Nombre)
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            <i class="fas fa-cog"></i> @Html.DisplayNameFor(model => model.Tipo)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Tipo)
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            <i class="fas fa-info-circle"></i> @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            <i class="fas fa-check-circle"></i> @Html.DisplayNameFor(model => model.Estado)
+                        </dt>
+                        <dd class="col-sm-8">
+                            <span class="badge @GetStatusBadgeClass(Model.Estado)">
+                                @Html.DisplayFor(model => model.Estado)
+                            </span>
+                        </dd>
+                        <dt class="col-sm-4 fw-bold">
+                            <i class="fas fa-calendar"></i> @Html.DisplayNameFor(model => model.FechaRegistro)
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.FechaRegistro)
+                        </dd>
+                    </dl>
+                    <form asp-action="Delete" class="mt-4">
+                        <input type="hidden" asp-for="EquipoId" />
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Eliminar Equipo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

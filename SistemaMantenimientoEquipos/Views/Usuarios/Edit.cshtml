@@ -1,0 +1,67 @@
+@model SistemaMantenimientoEquipos.Controllers.EditUserViewModel
+
+@{
+    ViewData["Title"] = "Editar Roles de Usuario";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-white">
+                    <h4 class="mb-0"><i class="fas fa-user-edit"></i> Editar Roles de Usuario</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5>Información del Usuario</h5>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <strong>Email:</strong> @Model.Email
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>Nombre:</strong> @Model.NombreCompleto
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Roles Actuales:</strong>
+                            @foreach (var role in Model.UserRoles) {
+                                <span class="badge bg-primary me-1">@role</span>
+                            }
+                        </div>
+                    </div>
+
+                    <form asp-action="Edit">
+                        <input type="hidden" asp-for="UserId" />
+                        <div class="mb-3">
+                            <label asp-for="NombreCompleto" class="form-label">
+                                <i class="fas fa-user"></i> Nombre Completo
+                            </label>
+                            <input asp-for="NombreCompleto" class="form-control" placeholder="Ingrese el nombre completo" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fas fa-user-tag"></i> Seleccionar Rol</label>
+                            @foreach (var role in Model.AllRoles) {
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                           name="SelectedRole" value="@role"
+                                           @(Model.SelectedRole == role ? "checked" : "") />
+                                    <label class="form-check-label">
+                                        @role
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-arrow-left"></i> Volver a la Lista
+                            </a>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-save"></i> Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

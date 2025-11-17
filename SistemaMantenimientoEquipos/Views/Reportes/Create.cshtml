@@ -1,0 +1,80 @@
+﻿@model SistemaMantenimientoEquipos.Models.Reporte
+
+@{
+    ViewData["Title"] = "Crear Reporte";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="fas fa-plus-circle"></i> Crear Nuevo Reporte</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                        <div class="mb-3">
+                            <label asp-for="Titulo" class="form-label">
+                                <i class="fas fa-heading"></i> Título del Reporte
+                            </label>
+                            <input asp-for="Titulo" class="form-control" placeholder="Ingrese el título" />
+                            <span asp-validation-for="Titulo" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Descripcion" class="form-label">
+                                <i class="fas fa-align-left"></i> Descripción del Daño
+                            </label>
+                            <textarea asp-for="Descripcion" class="form-control" rows="4" placeholder="Describa el problema"></textarea>
+                            <span asp-validation-for="Descripcion" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FechaReporte" class="form-label">
+                                    <i class="fas fa-calendar-day"></i> Fecha del Reporte
+                                </label>
+                                <input asp-for="FechaReporte" class="form-control" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                                <span asp-validation-for="FechaReporte" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Estado" class="form-label">
+                                    <i class="fas fa-tasks"></i> Estado del Reporte
+                                </label>
+                                <select asp-for="Estado" class="form-select">
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="En Proceso">En Proceso</option>
+                                    <option value="Completado">Completado</option>
+                                </select>
+                                <span asp-validation-for="Estado" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="EquipoId" class="form-label">
+                                <i class="fas fa-cogs"></i> Equipo
+                            </label>
+                            <select asp-for="EquipoId" class="form-select" asp-items="ViewBag.EquipoId" required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-user"></i> Usuario
+                            </label>
+                            <input type="text" class="form-control" value="@User.Identity?.Name" readonly />
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-arrow-left"></i> Volver a la Lista
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Crear Reporte
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
